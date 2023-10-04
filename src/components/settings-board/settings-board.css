@@ -1,0 +1,57 @@
+.settings-board{
+    position: absolute;
+    top: 76px;
+    right: 0;
+    background: #fff;
+    border: #E4E4E4 1px solid;
+    z-index: 1;
+}
+.infoToAccount{
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 19px;
+    letter-spacing: 0.4000000059604645px;
+    text-align: left;
+    border-bottom: #E4E4E4 1px solid;;
+
+}
+.settings-container{
+    padding: 10px 25px 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+.infoToAccount p{
+    margin: 0;
+
+}
+.settings-board-email{
+    color: #707070;
+
+}
+.settings-control-panel button{
+    background: none;
+    border: none;
+    cursor: pointer;
+
+}
+.button-log-out{
+    margin-top: 17px;
+    color: #F44336;
+
+}
+.button-settings-off{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    
+}
+.settings-control-panel a{
+    color: black;
+}
