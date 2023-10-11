@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./cart-icon.css";
 import { ReactComponent as Cart } from "../../assets/icons/Cart.svg";
 import { ReactComponent as CartQuantity } from "../../assets/icons/CartEllipseQuantity.svg";
 
 export default function CartIcon(): JSX.Element {
   const [cartState, setCartState] = useState(false);
-  setCartState(false);
+  useEffect(() => {
+    setCartState(false);
+  }, []);
+
   const quality = 5;
   return (
     <div>

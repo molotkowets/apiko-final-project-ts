@@ -6,20 +6,18 @@ interface GetProductResponse {
   data: IGetProduct;
 }
 
-export async function getProduct<T>(
-  parameters: T,
-): Promise<string | GetProductResponse> {
+export async function getProduct<T>(parameters: T): Promise<string | GetProductResponse> {
   try {
     const { data, status } = await axios.get<GetProductResponse>(
       "https://demo-api.apiko.academy/api/products",
       {
         headers: {
-          Accept: "application/json",
+          Accept: "application/json"
         },
         params: {
-          ...parameters,
-        },
-      },
+          ...parameters
+        }
+      }
     );
     console.log("response status is: ", status);
     return data;

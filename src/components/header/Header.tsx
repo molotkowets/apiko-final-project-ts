@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./header.css";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/icons/LogoFull.svg";
@@ -11,7 +11,9 @@ import CartIcon from "../cart-icon/CartIcon";
 export default function Header(): JSX.Element {
   const [favState, setFavState] = useState(false);
   // const isAuth = false;
-
+  useEffect(() => {
+    setFavState(false);
+  }, []);
   return (
     <div className="header">
       <NavLink to="/">

@@ -1,5 +1,5 @@
 // import { IGetProduct } from '../../types/getTypes';
-import React from "react";
+import React, { useEffect } from "react";
 
 import { getProduct } from "../../apis/getRequest";
 
@@ -15,10 +15,11 @@ export default function Home(): JSX.Element {
   //   interface GetProductResponse {
   //     data: IGetProduct;
   // };
-
-  const parameters = { offset: 0, limit: 20, sortBy: "latest" };
-  const products = getProduct<IParams>(parameters);
-  console.log(products);
+  useEffect(() => {
+    const parameters = { offset: 0, limit: 20, sortBy: "latest" };
+    const products = getProduct<IParams>(parameters);
+    console.log(products);
+  }, []);
 
   return <div>Home</div>;
 }

@@ -10,7 +10,7 @@ import Home from "./pages/home/Home";
 import "./App.css";
 
 function App(): React.ReactElement | null {
-  console.log("app")
+  console.log("app");
   return (
     <>
       <Routes>
