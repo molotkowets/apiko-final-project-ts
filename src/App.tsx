@@ -26,8 +26,8 @@ function App(): React.ReactElement | null {
             </Routes>
             {Boolean(background) && (
                 <Routes>
-                    <Route path="registration" element={<Registration />} />
-                    <Route path="login" element={<Login />} />
+                    <Route path="/registration" element={<Registration />} />
+                    <Route path="/login" element={<Login />} />
                 </Routes>
             )}
         </>

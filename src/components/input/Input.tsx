@@ -14,6 +14,7 @@ export default function Input({
     minLength,
 }: IInput): JSX.Element {
     const [stateLabel, setStateLabel] = useState(false);
+    const [showPass, setShowPass] = useState(false);
 
     const click = (e: React.FormEvent<HTMLInputElement>): void => {
         const state = !(e.currentTarget.value.length === 0);
@@ -41,9 +42,10 @@ export default function Input({
                 })}
                 id={id}
                 placeholder={placeholder}
-                type={type}
+                type={showPass ? "text" : type}
+                autoComplete="on"
             />
-            {type === "password" && <Eye />}
+            {type === "password" && <Eye setShowPass={setShowPass} />}
 
             {/* {error[name]?.message && <p>message</p>} */}
         </div>

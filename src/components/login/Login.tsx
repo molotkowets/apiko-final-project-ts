@@ -1,14 +1,22 @@
 import React from "react";
-import "./login.css";
+import "../../styles/auth-style.css";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Input from "../input/Input";
-import { inputsData } from "./data";
+import { loginData } from "./data";
+// import { postAuth } from "../../apis/postAuth";
+// import { type IParamsAuth } from "../../types/apisTypes";
+// import { urlLogin } from "../../constants/urls";
 
 export type Inputs = Record<string, string>;
 
 export default function Login(): JSX.Element {
+    // const paramsAuth = {
+    //     email: "molotkowets@gmail.com",
+    //     password: "admin1234!",
+    // };
+    // console.log(postAuth<IParamsAuth>(urlLogin, paramsAuth));
     const location = useLocation();
     const navigate = useNavigate();
     const {
@@ -18,8 +26,10 @@ export default function Login(): JSX.Element {
         // formState: { errors },
     } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        console.log(data);
+    const onSubmit: SubmitHandler<Inputs> = (data, event) => {
+        // event?.preventDefault();
+        console.log(data, event);
+        // console.log(postAuth<IParamsAuth>(urlLogin, data));
     };
 
     console.log(watch("login"));
@@ -33,8 +43,8 @@ export default function Login(): JSX.Element {
             <div className="authorization-container">
                 <div className="auth-input-box auth-box-general">
                     <h1 className="auth-title">Login</h1>
-                    <form onSubmit={() => handleSubmit(onSubmit)}>
-                        {inputsData.map((item, key) => (
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        {loginData.map((item, key) => (
                             <Input
                                 key={key}
                                 register={register}
@@ -52,13 +62,13 @@ export default function Login(): JSX.Element {
                     </form>
                 </div>
                 <div className="auth-switch-box auth-box-general">
-                    <p>I already have an account, </p>
+                    <p>I have no account, </p>
                     <Link
                         className="auth-switch-link"
-                        to={"login"}
+                        to={"/registration"}
                         state={{ background: location.state.background }}
                         replace={true}>
-                        Login
+                        Register now
                     </Link>
                 </div>
             </div>
