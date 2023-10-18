@@ -27,7 +27,3 @@ export interface TAuthResponse {
         address: string | null;
     };
 }
-export interface IParamsAuth {
-    email: string;
-    password: string;
-}

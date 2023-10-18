@@ -5,34 +5,28 @@ import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Input from "../input/Input";
 import { loginData } from "./data";
-// import { postAuth } from "../../apis/postAuth";
-// import { type IParamsAuth } from "../../types/apisTypes";
-// import { urlLogin } from "../../constants/urls";
+import { postAuth } from "../../apis/postAuth";
+import { urlLogin } from "../../constants/urls";
 
 export type Inputs = Record<string, string>;
 
 export default function Login(): JSX.Element {
-    // const paramsAuth = {
-    //     email: "molotkowets@gmail.com",
-    //     password: "admin1234!",
-    // };
-    // console.log(postAuth<IParamsAuth>(urlLogin, paramsAuth));
     const location = useLocation();
     const navigate = useNavigate();
     const {
         register,
         handleSubmit,
-        watch,
+        // watch,
         // formState: { errors },
     } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = (data, event) => {
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
         // event?.preventDefault();
-        console.log(data, event);
-        // console.log(postAuth<IParamsAuth>(urlLogin, data));
+        console.log(data);
+        console.log(postAuth<Inputs>(urlLogin, data));
     };
 
-    console.log(watch("login"));
+    // console.log(watch("login"));
     return (
         <div className="authorization-window">
             <button

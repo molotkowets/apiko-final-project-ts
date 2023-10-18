@@ -5,7 +5,7 @@ export async function postAuth<P>(url: string, params: P): Promise<string | TAut
     try {
         const { data, status } = await axios.post<TAuthResponse>(url, params);
 
-        console.log(JSON.stringify(data, null, 4));
+        console.log(JSON.stringify(data));
         console.log(status);
         return data;
     } catch (error) {
