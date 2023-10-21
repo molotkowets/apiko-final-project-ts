@@ -7,12 +7,16 @@ import Input from "../input/Input";
 import { loginData } from "./data";
 import { postAuth } from "../../apis/postAuth";
 import { urlLogin } from "../../constants/urls";
+import { useAuth } from "../../hooks/useAuth";
+import { logIn } from "../../store/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 export type Inputs = Record<string, string>;
 
 export default function Login(): JSX.Element {
     const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const {
         register,
         handleSubmit,
@@ -20,13 +24,19 @@ export default function Login(): JSX.Element {
         // formState: { errors },
     } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        // event?.preventDefault();
-        console.log(data);
-        console.log(postAuth<Inputs>(urlLogin, data));
-    };
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        const response = await postAuth<Inputs>(urlLogin, data);
+        // this is error
+        if (typeof response === "string") {
+            console.error("error = ", response);
+            return;
+        }
+        const { token, account } = response;
+        console.log(token, account);
 
-    // console.log(watch("login"));
+        dispatch(logIn(response));
+    };
+    console.log(useAuth());
     return (
         <div className="authorization-window">
             <button

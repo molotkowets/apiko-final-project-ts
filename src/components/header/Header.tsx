@@ -7,10 +7,11 @@ import { ReactComponent as FavoriteTrue } from "../../assets/icons/FavoriteTrue.
 import CartIcon from "../cart-icon/CartIcon";
 import HeaderProfile from "../auth-active/HeaderProfile";
 import UnLoggedIn from "../auth-active/UnLoggedIn";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Header(): JSX.Element {
+    const isAuth = Boolean(useAuth().token);
     const [favState, setFavState] = useState(false);
-    const isAuth = false;
     useEffect(() => {
         setFavState(false);
     }, []);

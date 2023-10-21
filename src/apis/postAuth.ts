@@ -10,11 +10,11 @@ export async function postAuth<P>(url: string, params: P): Promise<string | TAut
         return data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            console.log("error message: ", error.message);
+            console.error("error message: ", error.message);
             // 👇️ error: AxiosError<any, any>
             return error.message;
         } else {
-            console.log("unexpected error: ", error);
+            console.error("unexpected error: ", error);
             return "An unexpected error occurred";
         }
     }
