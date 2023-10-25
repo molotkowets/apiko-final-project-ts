@@ -1,9 +1,9 @@
 import axios from "axios";
 
-import type { IGetProduct } from "../types/apisTypes";
+// import type { IGetProduct } from "../types/apisTypes";
 
-interface GetProductResponse {
-    data: IGetProduct;
+export interface GetProductResponse {
+    data: any;
 }
 
 export async function getProduct<T>(parameters: T): Promise<string | GetProductResponse> {
