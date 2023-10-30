@@ -1,41 +1,53 @@
 import React, { useState } from "react";
-// import { type GetProductResponse } from "../../apis/getRequest";
 import "./home.css";
-import { type DefaultError, useQuery } from "@tanstack/react-query";
-import getProducts, { type GetProductResponse } from "../../services/getProducts";
+import "../../styles/main-styles.css";
+import LoadFilters from "../../components/load-filters/LoadFilters";
+import { type ISetParams, getProductsByParams } from "../../middleware/middle.selection-request ";
+
+export const defaultParams = Object.freeze({
+    search: undefined,
+    category: {
+        id: undefined,
+        name: undefined,
+    },
+    params: Object.freeze({
+        offset: 0,
+        limit: 20,
+        sortBy: "latest",
+    }),
+});
 
 export default function Home(): JSX.Element {
-    const [searchParams, setSearchParams] = useState({ offset: 0, limit: 20, sortBy: "latest" });
+    const [productParams, setProductParams] = useState<ISetParams>(defaultParams);
 
-    interface IParams {
-        offset: number;
-        limit: number;
-        sortBy: string;
-    }
-
-    const { data } = useQuery<
-        string | GetProductResponse,
-        DefaultError,
-        string | GetProductResponse,
-        [string, IParams]
-    >({
-        queryKey: ["products", searchParams],
-        queryFn: async ({ queryKey: [, _searchParams] }) => {
-            console.log("_searchParams = ", _searchParams);
-            return await getProducts.genAll<IParams>(_searchParams);
-        },
-    });
-
-    console.log("test", data);
+    console.log(getProductsByParams(productParams));
 
     return (
-        <div>
-            <button
-                onClick={() => {
-                    setSearchParams({ ...searchParams, offset: searchParams.offset + 10 });
-                }}>
-                click btn
-            </button>
+        <div className="content-container">
+            <LoadFilters productParams={productParams} setProductParams={setProductParams} />
+            <div className="goods-container"></div>
+            {/* {products.length ? (
+                <div className="goods-container">
+                    {products ? (
+                        products.map((product, index) => (
+                            <ProductCard key={index} product={product} handlerFav={getIdFav} />
+                        ))
+                    ) : (
+                        <Loading />
+                    )}
+                </div>
+            ) : (
+                <NoResultsFound />
+            )}
+            {btnVisibility && (
+                <button
+                    onClick={() =>
+                        setParameterGoods({ ...parameterGoods, limit: parameterGoods.limit + 20 })
+                    }
+                    className="button-load-more">
+                    Load more...
+                </button>
+            )} */}
         </div>
     );
 }

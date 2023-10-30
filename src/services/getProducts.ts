@@ -6,14 +6,42 @@ export interface GetProductResponse {
 }
 
 class GetProducts {
-    private readonly URL = "https://demo-api.apiko.academy/api/products";
+    private readonly URL = "https://demo-api.apiko.academy/api";
     async genAll<T>(params: T): Promise<string | GetProductResponse> {
-        const { data, status } = await axios.get<GetProductResponse>(this.URL, {
+        const { data, status } = await axios.get<GetProductResponse>(`${this.URL}/products`, {
             headers: {
                 Accept: "application/json",
             },
             params,
         });
+        console.log("response status is: ", status);
+        return data;
+    }
+
+    async genSearch<T>(params: T): Promise<string | GetProductResponse> {
+        const { data, status } = await axios.get<GetProductResponse>(
+            `${this.URL}/products/search`,
+            {
+                headers: {
+                    Accept: "application/json",
+                },
+                params,
+            }
+        );
+        console.log("response status is: ", status);
+        return data;
+    }
+
+    async genCategory<T>(params: T, id: number | undefined): Promise<string | GetProductResponse> {
+        const { data, status } = await axios.get<GetProductResponse>(
+            `${this.URL + "/categories/" + id + "/products"}`,
+            {
+                headers: {
+                    Accept: "application/json",
+                },
+                params,
+            }
+        );
         console.log("response status is: ", status);
         return data;
     }

@@ -1,0 +1,33 @@
+.parameter-input-wrapper{
+    display: flex;
+    background: #DEDEE0;
+    box-sizing: border-box;
+    background: #F9FAFB;
+    border: 1px solid #DEDEE0;
+    border-radius: 5px;
+    height: 37px;
+    align-items: center;
+    position: relative;
+    padding: 0 10px;
+    
+    cursor: pointer;
+}
+.parameter-input-wrapper:focus{
+    outline: none;
+}
+.inputs-icon{
+    margin-right: 10px;
+}
+.flex-one{
+    flex-grow: 1;
+}
+.flex-two{
+    flex-grow: 2;
+}
+.radius-bottom-non{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.span-wrapper{
+    width: 100%;
+}
