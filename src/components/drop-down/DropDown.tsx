@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./drop-down.css";
-
+import { type ICategories } from "../../services/getCategories";
+import { defaultParams } from "../../pages/home/Home";
+export interface ICategoriesDefault {
+    id: undefined;
+    name: undefined;
+}
 interface DropDownProps {
-    categories: string[];
+    categories: ICategories[];
     showDropDown: boolean;
     toggleDropDown: any;
-    selection: (str: string) => void;
+    selection: (str: ICategories | ICategoriesDefault) => void;
 }
 
 const DropDown: React.FC<DropDownProps> = ({
@@ -14,7 +19,7 @@ const DropDown: React.FC<DropDownProps> = ({
 }: DropDownProps): JSX.Element => {
     const [showDropDown, setShowDropDown] = useState<boolean>(false);
 
-    const onClickHandler = (category: string): void => {
+    const onClickHandler = (category: ICategories | ICategoriesDefault): void => {
         selection(category);
     };
 
@@ -25,14 +30,20 @@ const DropDown: React.FC<DropDownProps> = ({
     return (
         <>
             <div className={showDropDown ? "dropdown" : "dropdown active"}>
-                {categories.map((category: string, index: number): JSX.Element => {
+                <p
+                    onClick={(): void => {
+                        onClickHandler(defaultParams.category);
+                    }}>
+                    All
+                </p>
+                {categories.map((category: ICategories, index: number): JSX.Element => {
                     return (
                         <p
                             key={index}
                             onClick={(): void => {
                                 onClickHandler(category);
                             }}>
-                            {category}
+                            {category.name}
                         </p>
                     );
                 })}

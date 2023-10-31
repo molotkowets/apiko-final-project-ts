@@ -43,7 +43,7 @@ const productAll = (productParams: ISetParams): any => {
     >({
         queryKey: ["products", productParams.params],
         queryFn: async ({ queryKey: [, _productParams] }) => {
-            return await getProducts.genAll<IParams>(_productParams);
+            return await getProducts.getAll<IParams>(_productParams);
         },
     });
     return data;
@@ -64,7 +64,7 @@ const productByName = (productParams: ISetParams): any => {
     >({
         queryKey: ["products", searchParams],
         queryFn: async ({ queryKey: [, _searchParams] }) => {
-            return await getProducts.genSearch<ISearchParams>(_searchParams);
+            return await getProducts.getSearch<ISearchParams>(_searchParams);
         },
     });
     return data;
@@ -79,7 +79,7 @@ const productByCategory = (productParams: ISetParams): any => {
     >({
         queryKey: ["products", productParams.params],
         queryFn: async ({ queryKey: [, _productParams] }) => {
-            return await getProducts.genCategory<IParams>(
+            return await getProducts.getCategory<IParams>(
                 _productParams,
                 productParams.category.id
             );

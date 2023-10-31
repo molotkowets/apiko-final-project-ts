@@ -3,6 +3,11 @@ import "./home.css";
 import "../../styles/main-styles.css";
 import LoadFilters from "../../components/load-filters/LoadFilters";
 import { type ISetParams, getProductsByParams } from "../../middleware/middle.selection-request ";
+import { useDispatch } from "react-redux";
+import { getCategoriesStore } from "../../store/slices/categorySlice";
+// import { useCategories } from "../../hooks/useCategories";
+import { getCategoriesByParams } from "../../middleware/middle.request-category";
+// import getCategories from "../../services/getCategories";
 
 export const defaultParams = Object.freeze({
     search: undefined,
@@ -19,8 +24,14 @@ export const defaultParams = Object.freeze({
 
 export default function Home(): JSX.Element {
     const [productParams, setProductParams] = useState<ISetParams>(defaultParams);
+    const dispatch = useDispatch();
+    const product = getProductsByParams(productParams);
+    console.log(product);
+    const categories = getCategoriesByParams("");
+    // console.log(categories[0]);
+    dispatch(getCategoriesStore({ categories }));
 
-    console.log(getProductsByParams(productParams));
+    // console.log(useCategories());
 
     return (
         <div className="content-container">
