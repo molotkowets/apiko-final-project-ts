@@ -47,7 +47,7 @@ export default function Home(): JSX.Element {
     return (
         <div className="content-container">
             <LoadFilters productParams={productParams} setProductParams={setProductParams} />
-            <div className="goods-container"></div>
+
             {productBoolean ? (
                 <div className="goods-container">
                     {productBoolean
@@ -61,6 +61,7 @@ export default function Home(): JSX.Element {
                 // <NoResultsFound />
                 "NoResultsFound"
             )}
+            <div className="goods-container"></div>
             {/* {btnVisibility && (
                 <button
                     onClick={() =>

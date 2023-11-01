@@ -24,6 +24,7 @@ export default function Category({ productParams, setProductParams }: ITest): JS
     };
 
     const categorySelection = (categoryName: ICategories | ICategoriesDefault): void => {
+        console.log(categoryName);
         const params = {
             category: {
                 id: categoryName.id,
