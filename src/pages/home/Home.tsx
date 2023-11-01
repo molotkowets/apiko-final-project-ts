@@ -37,7 +37,6 @@ export default function Home(): JSX.Element {
     //     });
     // }, 3e3);
 
-    console.log(productParams.category);
     // useEffect(() => {
     //     products = getProductsByParams(productParams));
     // }, [productParams]);
@@ -62,15 +61,21 @@ export default function Home(): JSX.Element {
                 "NoResultsFound"
             )}
             <div className="goods-container"></div>
-            {/* {btnVisibility && (
+            {products?.length >= 20 && (
                 <button
-                    onClick={() =>
-                        setParameterGoods({ ...parameterGoods, limit: parameterGoods.limit + 20 })
-                    }
+                    onClick={() => {
+                        setProductParams({
+                            ...productParams,
+                            params: {
+                                ...productParams.params,
+                                limit: productParams.params.limit + 20,
+                            },
+                        });
+                    }}
                     className="button-load-more">
                     Load more...
                 </button>
-            )} */}
+            )}
         </div>
     );
 }

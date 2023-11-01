@@ -2,12 +2,6 @@ import { type DefaultError, useQuery } from "@tanstack/react-query";
 import ProductsAPI, { type GetProductResponse } from "../services/getProducts";
 import { type IGetProduct } from "../types/apisTypes";
 
-export interface IParams {
-    offset: number;
-    limit: number;
-    sortBy: string;
-}
-
 export interface ISearchParams {
     offset: number;
     limit: number;
@@ -16,6 +10,11 @@ export interface ISearchParams {
 export interface ICategory {
     id: number | undefined;
     name: string | undefined;
+}
+export interface IParams {
+    offset: number;
+    limit: number;
+    sortBy: string;
 }
 export interface ISetParams {
     search: undefined | string;
