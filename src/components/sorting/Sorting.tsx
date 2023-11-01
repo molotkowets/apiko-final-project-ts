@@ -29,7 +29,6 @@ export default function Sorting({ productParams, setProductParams }: ITest): JSX
     const sortValue = productParams.params.sortBy ?? "Choose Category";
     return (
         <div
-            contentEditable
             className={`parameter-input-wrapper flex-one ${showDropDown && "radius-bottom-non"}`}
             onClick={(): void => {
                 toggleDropDown();

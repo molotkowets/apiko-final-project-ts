@@ -5,7 +5,7 @@ export interface GetProductResponse {
     data: IGetProduct;
 }
 
-class GetProducts {
+class ProductsAPI {
     private readonly URL = "https://demo-api.apiko.academy/api";
     async getAll<T>(params: T): Promise<string | GetProductResponse> {
         const { data, status } = await axios.get<GetProductResponse>(`${this.URL}/products`, {
@@ -18,7 +18,7 @@ class GetProducts {
         return data;
     }
 
-    async getSearch<T>(params: T): Promise<string | GetProductResponse> {
+    async bySearch<T>(params: T): Promise<string | GetProductResponse> {
         const { data, status } = await axios.get<GetProductResponse>(
             `${this.URL}/products/search`,
             {
@@ -32,7 +32,7 @@ class GetProducts {
         return data;
     }
 
-    async getCategory<T>(params: T, id: number | undefined): Promise<string | GetProductResponse> {
+    async byCategory<T>(params: T, id: number | undefined): Promise<string | GetProductResponse> {
         const { data, status } = await axios.get<GetProductResponse>(
             `${this.URL + "/categories/" + id + "/products"}`,
             {
@@ -47,4 +47,4 @@ class GetProducts {
     }
 }
 
-export default new GetProducts();
+export default new ProductsAPI();

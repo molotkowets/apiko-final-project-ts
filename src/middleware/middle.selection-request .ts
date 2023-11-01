@@ -1,5 +1,5 @@
 import { type DefaultError, useQuery } from "@tanstack/react-query";
-import getProducts, { type GetProductResponse } from "../services/getProducts";
+import ProductsAPI, { type GetProductResponse } from "../services/getProducts";
 import { type IGetProduct } from "../types/apisTypes";
 
 export interface IParams {
@@ -23,17 +23,22 @@ export interface ISetParams {
     params: IParams;
 }
 
-export const getProductsByParams = (productParams: ISetParams): IGetProduct => {
-    console.log(productParams.category.id != null, productParams.category.id);
-    if (productParams.search != null && productParams.search.length >= 3)
-        return productByName(productParams);
+export const getProductsByParams = (productParams: ISetParams): IGetProduct[] => {
+    if (productParams.search != null && productParams.search.length >= 3) {
+        // console.log("getProductsByParams = by name");
+        return productsByName(productParams);
+    }
 
-    if (productParams.category.name != null) return productByCategory(productParams);
+    if (productParams.category.name != null) {
+        console.log("getProductsByParams = ", productParams.category.name);
 
-    return productAll(productParams);
+        return productsByCategory(productParams);
+    }
+
+    return productsAll(productParams);
 };
-// check - return ANY type ??
-const productAll = (productParams: ISetParams): any => {
+// FIXME return ANY type ??
+const productsAll = (productParams: ISetParams): any => {
     console.log("all");
     const { data } = useQuery<
         string | GetProductResponse,
@@ -43,13 +48,13 @@ const productAll = (productParams: ISetParams): any => {
     >({
         queryKey: ["products", productParams.params],
         queryFn: async ({ queryKey: [, _productParams] }) => {
-            return await getProducts.getAll<IParams>(_productParams);
+            return await ProductsAPI.getAll<IParams>(_productParams);
         },
     });
     return data;
 };
-// check - return ANY type ??
-const productByName = (productParams: ISetParams): any => {
+// FIXME return ANY type ??
+const productsByName = (productParams: ISetParams): any => {
     console.log("search", productParams.search);
     const searchParams = {
         offset: productParams.params.offset,
@@ -64,25 +69,23 @@ const productByName = (productParams: ISetParams): any => {
     >({
         queryKey: ["products", searchParams],
         queryFn: async ({ queryKey: [, _searchParams] }) => {
-            return await getProducts.getSearch<ISearchParams>(_searchParams);
+            return await ProductsAPI.bySearch<ISearchParams>(_searchParams);
         },
     });
     return data;
 };
-// check - return ANY type ??
-const productByCategory = (productParams: ISetParams): any => {
+
+// FIXME: return ANY type ??
+const productsByCategory = (productParams: ISetParams): any => {
     const { data } = useQuery<
         string | GetProductResponse,
         DefaultError,
         string | GetProductResponse,
-        [string, IParams]
+        [string, IParams, number | undefined]
     >({
-        queryKey: ["products", productParams.params],
+        queryKey: ["products", productParams.params, productParams.category.id],
         queryFn: async ({ queryKey: [, _productParams] }) => {
-            return await getProducts.getCategory<IParams>(
-                _productParams,
-                productParams.category.id
-            );
+            return await ProductsAPI.byCategory<IParams>(_productParams, productParams.category.id);
         },
     });
     return data;

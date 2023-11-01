@@ -40,7 +40,6 @@ export default function Category({ productParams, setProductParams }: ITest): JS
     const categoryValue = productParams.category.name ?? "Choose Category";
     return (
         <div
-            contentEditable
             className={`category parameter-input-wrapper flex-two ${
                 showDropDown && "radius-bottom-non"
             }`}
@@ -52,7 +51,7 @@ export default function Category({ productParams, setProductParams }: ITest): JS
                 <div className="parameter-choice">
                     <CategoryIcon className="inputs-icon" />
                     <div className="span-wrapper">
-                        <span>{categoryValue}</span>
+                        <span contentEditable={false}>{categoryValue}</span>
                     </div>
                     <ArrowOpenIcon />
                 </div>
