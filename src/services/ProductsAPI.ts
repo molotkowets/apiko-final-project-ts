@@ -1,5 +1,6 @@
 import axios from "axios";
 import { type IGetProduct } from "../types/apisTypes";
+// import { useAuth } from "../hooks/useAuth";
 
 export interface GetProductResponse {
     data: IGetProduct;
@@ -42,6 +43,17 @@ class ProductsAPI {
                 params,
             }
         );
+        console.log("response status is: ", status);
+        return data;
+    }
+
+    async byId(id: string): Promise<string | GetProductResponse> {
+        const { data, status } = await axios.get<GetProductResponse>(`${this.URL}/products/${id}`, {
+            headers: {
+                Accept: "application/json",
+                // Authorization: `Bearer ${useAuth().token}`,
+            },
+        });
         console.log("response status is: ", status);
         return data;
     }

@@ -1,5 +1,5 @@
 import { type DefaultError, useQuery } from "@tanstack/react-query";
-import ProductsAPI, { type GetProductResponse } from "../services/getProducts";
+import ProductsAPI, { type GetProductResponse } from "../services/ProductsAPI";
 import { type IGetProduct } from "../types/apisTypes";
 
 export interface ISearchParams {

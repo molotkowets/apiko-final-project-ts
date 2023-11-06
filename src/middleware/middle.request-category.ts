@@ -5,17 +5,17 @@ import getCategories, {
 } from "../services/getCategories";
 // import { type GetProductResponse } from "../services/getProducts";
 
-export const getCategoriesByParams = (path: string): any => {
-    const modPath = path === "" ? "" : "/" + path;
+export const getCategoriesByParams = (categoryId: string): any => {
+    const modifiedPath = categoryId === "" ? "" : "/" + categoryId;
     const { data } = useQuery<
         string | IGetProductResponse | ICategories,
         DefaultError,
         string | IGetProductResponse | ICategories,
         [string, string]
     >({
-        queryKey: ["products", modPath],
-        queryFn: async ({ queryKey: [, _modPath] }) => {
-            return await getCategories.genAll(_modPath);
+        queryKey: ["products", modifiedPath],
+        queryFn: async ({ queryKey: [, _modifiedPath] }) => {
+            return await getCategories.genAll(_modifiedPath);
         },
     });
     return data;
