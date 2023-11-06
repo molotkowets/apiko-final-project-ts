@@ -1,7 +1,4 @@
 import axios from "axios";
-
-// import type { IGetProduct } from "../types/apisTypes";
-
 export interface GetProductResponse {
     data: any;
 }

@@ -1,15 +1,12 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-
 import Layout from "./components/layout/Layout";
-
 import "./styles/main-styles.css";
-
 import Home from "./pages/home/Home";
-
 import "./App.css";
 import Registration from "./components/registration/Registration";
 import Login from "./components/login/Login";
+import Product from "./pages/product/product";
 
 function App(): React.ReactElement | null {
     const location = useLocation();
@@ -22,6 +19,7 @@ function App(): React.ReactElement | null {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
+                    <Route path="product/:id" element={<Product />} />
                 </Route>
             </Routes>
             {Boolean(background) && (

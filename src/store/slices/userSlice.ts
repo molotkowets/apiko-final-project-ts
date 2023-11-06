@@ -1,19 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { type } from "os";
-// interface IInitial {
-//     token: string | null;
-//     account: {
-//         id: number | null;
-//         fullName: string | null;
-//         createdAt: string | null;
-//         updatedAt: string | null;
-//         email: string | null;
-//         phone: string | null;
-//         country: string | null;
-//         city: string | null;
-//         address: string | null;
-//     };
-// }
 
 const initialState = {
     isAuth: false,
