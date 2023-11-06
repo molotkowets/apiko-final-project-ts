@@ -11,6 +11,7 @@ import ProductCard from "../../components/product-card/ProductCard";
 import { useDispatch } from "react-redux";
 import { getCategoriesByParams } from "../../middleware/middle.request-category";
 import { getCategoriesStore } from "../../store/slices/categorySlice";
+import { useAuth } from "../../hooks/useAuth";
 
 export const defaultParams = Object.freeze({
     search: undefined,
@@ -27,20 +28,12 @@ export const defaultParams = Object.freeze({
 
 export default function Home(): JSX.Element {
     const [productParams, setProductParams] = useState<ISetParams>(defaultParams);
+    const token = useAuth().token;
     const dispatch = useDispatch();
     const categories = getCategoriesByParams("");
     dispatch(getCategoriesStore({ categories }));
-    // setTimeout(() => {
-    //     setProductParams({
-    //         ...productParams,
-    //         params: { ...productParams.params, limit: 2 },
-    //     });
-    // }, 3e3);
 
-    // useEffect(() => {
-    //     products = getProductsByParams(productParams));
-    // }, [productParams]);
-    const products = getProductsByParams(productParams);
+    const products = getProductsByParams(productParams, token);
 
     const productBoolean = Boolean(products?.length ?? false);
     return (
@@ -60,7 +53,8 @@ export default function Home(): JSX.Element {
                 // <NoResultsFound />
                 "NoResultsFound"
             )}
-            <div className="goods-container"></div>
+            {/* FIXME goods-container */}
+            {/* <div className="goods-container"></div> */}
             {products?.length >= 20 && (
                 <button
                     onClick={() => {

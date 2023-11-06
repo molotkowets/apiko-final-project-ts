@@ -6,7 +6,7 @@ import Home from "./pages/home/Home";
 import "./App.css";
 import Registration from "./components/registration/Registration";
 import Login from "./components/login/Login";
-import Product from "./pages/product/product";
+import Product from "./pages/product/Product";
 
 function App(): React.ReactElement | null {
     const location = useLocation();
