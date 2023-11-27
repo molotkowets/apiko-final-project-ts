@@ -54,7 +54,7 @@ export default function Home(): JSX.Element {
                 "NoResultsFound"
             )}
             {/* FIXME goods-container */}
-            {/* <div className="goods-container"></div> */}
+            <div className="goods-container"></div>
             {products?.length >= 20 && (
                 <button
                     onClick={() => {

@@ -6,7 +6,7 @@ import Home from "./pages/home/Home";
 import "./App.css";
 import Registration from "./components/registration/Registration";
 import Login from "./components/login/Login";
-import Product from "./pages/product/Product";
+import ProductContainer from "./containers/ProductContainer";
 
 function App(): React.ReactElement | null {
     const location = useLocation();
@@ -19,7 +19,7 @@ function App(): React.ReactElement | null {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path="product/:id" element={<Product />} />
+                    <Route path="product/:id" element={<ProductContainer />} />
                 </Route>
             </Routes>
             {Boolean(background) && (

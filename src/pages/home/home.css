@@ -16,7 +16,7 @@
 }
 .button-load-more{
     display: flex;
-    margin-top: 50px;
+    margin: 50px 0 85px;
     background: #148DFD;
     padding: 6px 16px 6px 16px;
     border-radius: 4px;

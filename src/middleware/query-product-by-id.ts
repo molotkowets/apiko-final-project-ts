@@ -1,12 +1,16 @@
 import { useQuery, type DefaultError } from "@tanstack/react-query";
 import ProductsAPI, { type GetProductResponse } from "../services/ProductsAPI";
 import { type TToken } from "./middle.selection-request ";
-
-export const GetProductsById = (id: string, token: TToken): any => {
-    const { data, isLoading, fetchStatus, error } = useQuery<
-        string | GetProductResponse,
+import { type AxiosResponse } from "axios";
+// import { type IGetProduct } from "../types/apisTypes";
+interface IData {
+    data: GetProductResponse | undefined;
+}
+export const GetProductsById = (id: string, token: TToken): IData => {
+    const { data } = useQuery<
+        AxiosResponse<GetProductResponse, GetProductResponse>,
         DefaultError,
-        string | GetProductResponse,
+        GetProductResponse,
         [string, string, TToken]
     >({
         queryKey: ["products", id, token],
@@ -14,5 +18,5 @@ export const GetProductsById = (id: string, token: TToken): any => {
             return await ProductsAPI.byId(_id, _token);
         },
     });
-    return { data, isLoading, fetchStatus, error };
+    return { data };
 };

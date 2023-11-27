@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { type AxiosResponse } from "axios";
 import { type IGetProduct } from "../types/apisTypes";
 import { type TToken } from "../middleware/middle.selection-request ";
 // import { useAuth } from "../hooks/useAuth";
@@ -55,13 +55,16 @@ class ProductsAPI {
         return data;
     }
 
-    async byId(id: string, token: TToken): Promise<string | GetProductResponse> {
+    async byId(
+        id: string,
+        token: TToken
+    ): Promise<AxiosResponse<GetProductResponse, GetProductResponse>> {
         const headers = generateHeaders(token);
-        const { data, status } = await axios.get<GetProductResponse>(`${this.URL}/products/${id}`, {
+        // const { data, status } = await axios.get<GetProductResponse>(`${this.URL}/products/${id}`, {
+        return await axios.get(`${this.URL}/products/${id}`, {
             headers,
         });
-        console.log("response status is: ", status);
-        return data;
+        // return response;
     }
 }
 
