@@ -16,6 +16,7 @@
     width: 425px;
     min-height: 100px;
     z-index: 1;
+    position: relative;
     
 }
 .background-button-close{
