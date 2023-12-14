@@ -7,13 +7,18 @@ import "./App.css";
 import Registration from "./components/registration/Registration";
 import Login from "./components/login/Login";
 import ProductContainer from "./containers/ProductContainer";
+import { useDispatch } from "react-redux";
+import { logIn } from "./store/slices/userSlice";
 
 function App(): React.ReactElement | null {
     const location = useLocation();
     const background = location.state?.background;
+    const dispatch = useDispatch();
+    const localAuth = localStorage.getItem("auth");
+    if (localAuth !== null) {
+        dispatch(logIn(JSON.parse(localAuth)));
+    }
     // location.state && location.state.background;
-    // const onAuth = JSON.parse(localStorage.getItem("onAuth"))?.token
-    // console.log("app");
     return (
         <>
             <Routes>

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import "./home.css";
 import "../../styles/main-styles.css";
 import LoadFilters from "../../components/load-filters/LoadFilters";
-import { type ISetParams, getProductsByParams } from "../../middleware/middle.selection-request ";
+import { type ISetParams, getProductsByParams } from "../../query's/query.selection-request ";
 // import { useDispatch } from "react-redux";
 // import { getCategoriesStore } from "../../store/slices/categorySlice";
 // import { getCategoriesByParams } from "../../middleware/middle.request-category";
 import ProductCard from "../../components/product-card/ProductCard";
 // import { type IGetProduct } from "../../types/apisTypes";
 import { useDispatch } from "react-redux";
-import { getCategoriesByParams } from "../../middleware/middle.request-category";
+import { getCategoriesByParams } from "../../query's/query.get-categories";
 import { getCategoriesStore } from "../../store/slices/categorySlice";
 import { useAuth } from "../../hooks/useAuth";
 

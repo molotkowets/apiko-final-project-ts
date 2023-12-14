@@ -1,5 +1,5 @@
 import axios from "axios";
-import { type TToken } from "../middleware/middle.selection-request ";
+import { type TToken } from "../query's/query.selection-request ";
 
 function generateHeaders(token: TToken): any {
     const headers =

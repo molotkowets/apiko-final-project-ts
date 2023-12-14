@@ -6,11 +6,12 @@ import { Link } from "react-router-dom";
 import Input from "../input/Input";
 import { loginData } from "./data";
 // check - apis to services
-import { postAuth } from "../../apis/postAuth";
-import { urlLogin } from "../../constants/urls";
-import { useAuth } from "../../hooks/useAuth";
+// import { postAuth } from "../../apis/postAuth";
+// import { urlLogin } from "../../constants/urls";
+// import { useAuth } from "../../hooks/useAuth";
 import { logIn } from "../../store/slices/userSlice";
 import { useDispatch } from "react-redux";
+import Authorization from "../../services/authorization_services";
 
 export type Inputs = Record<string, string>;
 
@@ -26,18 +27,18 @@ export default function Login(): JSX.Element {
     } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        const response = await postAuth<Inputs>(urlLogin, data);
-        // this is error
+        const response = await Authorization.Login<Inputs>(data);
         if (typeof response === "string") {
             console.error("error = ", response);
             return;
         }
         const { token, account } = response;
         console.log(token, account);
-
+        localStorage.setItem("auth", JSON.stringify(response));
         dispatch(logIn(response));
+        navigate(-1);
     };
-    console.log(useAuth());
+    // console.log(useAuth());
     return (
         <div className="authorization-window">
             <button

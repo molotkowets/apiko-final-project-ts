@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import ProductPage from "../pages/product/ProductPage";
-import { GetProductsById } from "../middleware/query-product-by-id";
+import { GetProductsById } from "../query's/query-product-by-id";
 
 export default function ProductContainer(): JSX.Element {
     const token = useAuth().token;

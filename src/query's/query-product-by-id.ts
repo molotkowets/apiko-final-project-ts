@@ -1,6 +1,6 @@
 import { useQuery, type DefaultError } from "@tanstack/react-query";
 import ProductsAPI, { type GetProductResponse } from "../services/ProductsAPI";
-import { type TToken } from "./middle.selection-request ";
+import { type TToken } from "./query.selection-request ";
 import { type AxiosResponse } from "axios";
 // import { type IGetProduct } from "../types/apisTypes";
 interface IData {

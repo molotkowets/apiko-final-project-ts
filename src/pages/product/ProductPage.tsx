@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./product-page.css";
 import Counter from "../../components/counter/Counter";
 import { type IGetProduct } from "../../types/apisTypes";
-import { queryByIdToFavorite } from "../../middleware/query-favorite-api";
-import { type TToken } from "../../middleware/middle.selection-request ";
+import { queryByIdToFavorite } from "../../query's/query-favorite-api";
+import { type TToken } from "../../query's/query.selection-request ";
 export interface IProduct {
     product: IGetProduct;
     token: TToken;

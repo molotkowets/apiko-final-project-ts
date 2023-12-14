@@ -1,6 +1,6 @@
 import axios, { type AxiosResponse } from "axios";
 import { type IGetProduct } from "../types/apisTypes";
-import { type TToken } from "../middleware/middle.selection-request ";
+import { type TToken } from "../query's/query.selection-request ";
 // import { useAuth } from "../hooks/useAuth";
 
 export interface GetProductResponse {
