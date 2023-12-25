@@ -1,7 +1,8 @@
 import React from "react";
 // import "./product.css";
 import { useParams } from "react-router-dom";
-import { GetProductsById } from "../../middleware/query-product-by-id";
+import { GetProductsById } from "../../hooks/useProductById";
+// import { GetProductsById } from "../../middleware/query-product-by-id";
 // import { useAuth } from "../../hooks/useAuth";
 // import { addOrDelFavorite, buyNow } from "./buttonFunc";
 // import { getStorage } from "../../constants/urls";

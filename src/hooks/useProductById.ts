@@ -1,8 +1,8 @@
 import { useQuery, type DefaultError } from "@tanstack/react-query";
 import ProductsAPI, { type GetProductResponse } from "../services/ProductsAPI";
 
-export const GetProductsByIds = (id: string): any => {
-    const { data, isLoading, fetchStatus, error } = useQuery<
+export const GetProductsById = (id: string): any => {
+    return useQuery<
         string | GetProductResponse,
         DefaultError,
         string | GetProductResponse,
@@ -13,6 +13,6 @@ export const GetProductsByIds = (id: string): any => {
             console.log("test");
             return await ProductsAPI.byId(id);
         },
+        enabled: Boolean(id),
     });
-    return { data, isLoading, fetchStatus, error };
 };

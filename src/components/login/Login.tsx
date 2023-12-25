@@ -1,43 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/auth-style.css";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Input from "../input/Input";
 import { loginData } from "./data";
-// check - apis to services
-import { postAuth } from "../../apis/postAuth";
 import { urlLogin } from "../../constants/urls";
-import { useAuth } from "../../hooks/useAuth";
 import { logIn } from "../../store/slices/userSlice";
 import { useDispatch } from "react-redux";
+import { useLogin } from "../../hooks/useLogin";
+import { type TAuthResponse } from "../../types/apisTypes";
 
 export type Inputs = Record<string, string>;
 
 export default function Login(): JSX.Element {
+    const [params, setParams] = useState<Inputs>();
+    const { isLoading, data } = useLogin(urlLogin, params);
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {
-        register,
-        handleSubmit,
-        // watch,
-        // formState: { errors },
-    } = useForm<Inputs>();
-
-    const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        const response = await postAuth<Inputs>(urlLogin, data);
-        // this is error
-        if (typeof response === "string") {
-            console.error("error = ", response);
-            return;
+    const { register, handleSubmit } = useForm<Inputs>();
+    const onAuth: TAuthResponse = JSON.parse(String(localStorage.getItem("onAuth")));
+    useEffect(() => {
+        if (typeof onAuth.token === "string") {
+            navigate(-1);
+            console.log("token: ", onAuth.token);
         }
-        const { token, account } = response;
-        console.log(token, account);
+    }, []);
 
-        dispatch(logIn(response));
+    const onSubmit: SubmitHandler<Inputs> = async (params) => {
+        setParams(params);
     };
-    console.log(useAuth());
+    if (data?.status === 200) {
+        const { token, account } = data.data;
+        console.log(token, account);
+        dispatch(logIn(data.data));
+        localStorage.setItem("onAuth", JSON.stringify(data.data));
+        navigate(-1);
+    }
+    console.log("isLoading:", isLoading);
     return (
         <div className="authorization-window">
             <button
