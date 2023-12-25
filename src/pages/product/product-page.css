@@ -1,0 +1,136 @@
+.product-window{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: #00000099;
+
+}
+
+
+.product-wrapper{
+    display: flex;
+    padding: 60px;
+    width: 1000px;
+    flex-direction: column;
+    background: #fff;
+
+}
+.product-description-wrapper{
+    display: flex;
+}
+.product-description{
+    font-family: 'DM Sans';
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+
+}
+.product-description h2{
+    color: #373738;
+
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0.5px;
+    text-align: left;
+}
+.quantity-product{
+    display: flex;
+}
+.circle-button{
+    border: none;
+    align-items: center;
+    display: flex;
+    width: 26px;
+    height: 26px;
+    background: #E0E0E0;
+    border-radius: 50%;
+    justify-content: center;
+}
+.quantity{
+    display: flex;
+    padding: 0 10px;
+}
+.product-img-wrapper{
+    display: flex;
+    background: #fff;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    border: 1px solid #E4E4E4;
+    margin-right: 40px;
+}
+.product-img-description{
+    border-radius: 3px;
+    /* box-shadow: 0px 0px 2px #000s */
+}
+
+.product-description-text{
+   color: #707070;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0px;
+    text-align: left;
+
+}
+.product-desc-price{
+    margin-right: 150px;
+    color: #373738;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 26px;
+    letter-spacing: 0px;
+    text-align: left;
+
+}
+.product-desc-price-num{
+    color: #373738;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0.5px;
+    text-align: left;
+
+}
+.product-desc-price-wrapper{
+    margin: 25px 0;
+    display: flex;
+}
+.product-buttons button{
+    width: 220px;
+    padding: 9px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.product-buttons{
+    display: flex;
+    margin-top: 65px;
+    justify-content: space-between;
+    font-family: 'DM Sans';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.4000000059604645px;
+    text-align: left;
+
+}
+.product-add-to-fav-button{
+    margin-left: 35px;
+}
+.border-button-add{
+    border: 2px #FD7114 solid;
+    color: #FD7114 ;
+    background: #fff;
+}
+.product-button-background{
+    border: none;
+    background-color: #FD7114;
+    color: #fff;
+}
+.btn-fav-active{
+    background-color: #FD7114;
+    color: white;
+}

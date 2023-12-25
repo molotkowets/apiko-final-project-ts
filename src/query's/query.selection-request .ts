@@ -21,39 +21,43 @@ export interface ISetParams {
     category: ICategory;
     params: IParams;
 }
+export type TToken = string | null;
 
-export const getProductsByParams = (productParams: ISetParams): IGetProduct[] => {
+export const getProductsByParams = (
+    productParams: ISetParams,
+    token: string | null
+): IGetProduct[] => {
     if (productParams.search != null && productParams.search.length >= 3) {
         // console.log("getProductsByParams = by name");
-        return productsByName(productParams);
+        return productsByName(productParams, token);
     }
 
     if (productParams.category.name != null) {
         console.log("getProductsByParams = ", productParams.category.name);
 
-        return productsByCategory(productParams);
+        return productsByCategory(productParams, token);
     }
 
-    return productsAll(productParams);
+    return productsAll(productParams, token);
 };
 // FIXME return ANY type ??
-const productsAll = (productParams: ISetParams): any => {
+const productsAll = (productParams: ISetParams, token: TToken): any => {
     console.log("all");
     const { data } = useQuery<
         string | GetProductResponse,
         DefaultError,
         string | GetProductResponse,
-        [string, IParams]
+        [string, IParams, TToken]
     >({
-        queryKey: ["products", productParams.params],
-        queryFn: async ({ queryKey: [, _productParams] }) => {
-            return await ProductsAPI.getAll<IParams>(_productParams);
+        queryKey: ["products", productParams.params, token],
+        queryFn: async ({ queryKey: [, _productParams, _token] }) => {
+            return await ProductsAPI.getAll<IParams>(_productParams, _token);
         },
     });
     return data;
 };
 // FIXME return ANY type ??
-const productsByName = (productParams: ISetParams): any => {
+const productsByName = (productParams: ISetParams, token: TToken): any => {
     console.log("search", productParams.search);
     const searchParams = {
         offset: productParams.params.offset,
@@ -64,27 +68,31 @@ const productsByName = (productParams: ISetParams): any => {
         string | GetProductResponse,
         DefaultError,
         string | GetProductResponse,
-        [string, ISearchParams]
+        [string, ISearchParams, TToken]
     >({
-        queryKey: ["products", searchParams],
-        queryFn: async ({ queryKey: [, _searchParams] }) => {
-            return await ProductsAPI.bySearch<ISearchParams>(_searchParams);
+        queryKey: ["products", searchParams, token],
+        queryFn: async ({ queryKey: [, _searchParams, _token] }) => {
+            return await ProductsAPI.bySearch<ISearchParams>(_searchParams, _token);
         },
     });
     return data;
 };
 
-// FIXME: return ANY type ??
-const productsByCategory = (productParams: ISetParams): any => {
+// FIXME: return ANY type ?? IGetProduct
+const productsByCategory = (productParams: ISetParams, token: TToken): any => {
     const { data } = useQuery<
         string | GetProductResponse,
         DefaultError,
         string | GetProductResponse,
-        [string, IParams, number | undefined]
+        [string, IParams, number | undefined, TToken]
     >({
-        queryKey: ["products", productParams.params, productParams.category.id],
-        queryFn: async ({ queryKey: [, _productParams] }) => {
-            return await ProductsAPI.byCategory<IParams>(_productParams, productParams.category.id);
+        queryKey: ["products", productParams.params, productParams.category.id, token],
+        queryFn: async ({ queryKey: [, _productParams, _token] }) => {
+            return await ProductsAPI.byCategory<IParams>(
+                _productParams,
+                productParams.category.id,
+                token
+            );
         },
     });
     return data;

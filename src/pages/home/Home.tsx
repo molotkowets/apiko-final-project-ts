@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import "./home.css";
 import "../../styles/main-styles.css";
 import LoadFilters from "../../components/load-filters/LoadFilters";
-import { type ISetParams, getProductsByParams } from "../../middleware/middle.selection-request ";
+import { type ISetParams, getProductsByParams } from "../../query's/query.selection-request ";
 // import { useDispatch } from "react-redux";
 // import { getCategoriesStore } from "../../store/slices/categorySlice";
 // import { getCategoriesByParams } from "../../middleware/middle.request-category";
 import ProductCard from "../../components/product-card/ProductCard";
 // import { type IGetProduct } from "../../types/apisTypes";
 import { useDispatch } from "react-redux";
-import { getCategoriesByParams } from "../../middleware/middle.request-category";
+import { getCategoriesByParams } from "../../query's/query.get-categories";
 import { getCategoriesStore } from "../../store/slices/categorySlice";
+import { useAuth } from "../../hooks/useAuth";
 
 export const defaultParams = Object.freeze({
     search: undefined,
@@ -27,20 +28,12 @@ export const defaultParams = Object.freeze({
 
 export default function Home(): JSX.Element {
     const [productParams, setProductParams] = useState<ISetParams>(defaultParams);
+    const token = useAuth().token;
     const dispatch = useDispatch();
     const categories = getCategoriesByParams("");
     dispatch(getCategoriesStore({ categories }));
-    // setTimeout(() => {
-    //     setProductParams({
-    //         ...productParams,
-    //         params: { ...productParams.params, limit: 2 },
-    //     });
-    // }, 3e3);
 
-    // useEffect(() => {
-    //     products = getProductsByParams(productParams));
-    // }, [productParams]);
-    const products = getProductsByParams(productParams);
+    const products = getProductsByParams(productParams, token);
 
     const productBoolean = Boolean(products?.length ?? false);
     return (
@@ -60,6 +53,7 @@ export default function Home(): JSX.Element {
                 // <NoResultsFound />
                 "NoResultsFound"
             )}
+            {/* FIXME goods-container */}
             <div className="goods-container"></div>
             {products?.length >= 20 && (
                 <button
