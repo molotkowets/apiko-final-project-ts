@@ -3,7 +3,7 @@ import "./load-filters.css";
 import Search from "../search/Search";
 import Category from "../category/Category";
 import Sorting from "../sorting/Sorting";
-import { type ISetParams } from "../../middleware/middle.selection-request ";
+import { type ISetParams } from "../../query's/query.selection-request ";
 export interface ITest {
     productParams: ISetParams;
     setProductParams: React.Dispatch<React.SetStateAction<ISetParams>>;
