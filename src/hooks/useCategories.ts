@@ -14,6 +14,5 @@ interface IUseAuthTest {
 
 export const useCategories = (): IUseAuthTest => {
     const categories = useSelector<IUseAuth, IUseAuthTest>((state) => state.categories);
-    // console.log(categories);
     return categories;
 };
