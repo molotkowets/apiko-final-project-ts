@@ -11,6 +11,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 export default function Header(): JSX.Element {
     const isAuth = Boolean(useAuth().token);
+    // console.log(useAuth());
     const [favState, setFavState] = useState(false);
     useEffect(() => {
         setFavState(false);

@@ -1,31 +1,29 @@
 import React, { useState } from "react";
 import "./auth-active.css";
 import { ReactComponent as Arrow } from "../../assets/icons/arrow.svg";
-// import SettingsBoard from '../settings-board/SettingsBoard'
-
-// interface IState {
-//   setIsAuth: string
-// }
+import { useAuth } from "../../hooks/useAuth";
+import SettingsBoard from "../settings-board/SettingsBoard";
 
 export default function HeaderProfile(): JSX.Element {
-    // const storage: string | null = localStorage.getItem("onAuth")
-    // const name = storage?.account?.fullName
     const [showBoard, setShowBoard] = useState(false);
+    const firstLetter = useAuth().account.fullName?.toString()[0];
 
     return (
         <div className="auth-active-container">
-            {/* <h3 className='header-welcome'>Welcome, {name}!</h3> */}
+            <h3 className="header-welcome">Welcome, {useAuth().account.fullName}!</h3>
             <button
                 onClick={() => {
                     setShowBoard(!showBoard);
                 }}
                 className="accountButton">
                 <div className="accountAvatarOnHeader">
-                    {/* <p className='letter'>{name[0].toUpperCase()}</p> */}
+                    <p className="letter">{firstLetter?.toUpperCase()}</p>
                 </div>
                 <Arrow className="arrow-account" />
             </button>
-            {/* {showBoard && <SettingsBoard setIsAuth={setIsAuth} setShowBoard={setShowBoard}/>} */}
+            {showBoard && <SettingsBoard />}
         </div>
     );
 }
+
+// setIsAuth={setIsAuth} setShowBoard={setShowBoard}
