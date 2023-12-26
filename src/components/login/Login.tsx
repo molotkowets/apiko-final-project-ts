@@ -24,9 +24,9 @@ export default function Login(): JSX.Element {
     const { register, handleSubmit } = useForm<Inputs>();
     const onAuth: TAuthResponse = JSON.parse(String(localStorage.getItem("onAuth")));
     useEffect(() => {
-        if (typeof onAuth.token === "string") {
+        if (typeof onAuth?.token === "string") {
             navigate(-1);
-            console.log("token: ", onAuth.token);
+            console.log("token: ", onAuth?.token);
         }
     }, []);
 

@@ -21,7 +21,7 @@ export default function HeaderProfile(): JSX.Element {
                 </div>
                 <Arrow className="arrow-account" />
             </button>
-            {showBoard && <SettingsBoard />}
+            {showBoard && <SettingsBoard setShowBoard={setShowBoard} />}
         </div>
     );
 }
