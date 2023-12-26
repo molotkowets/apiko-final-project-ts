@@ -18,7 +18,7 @@ export default function Search({ productParams, setProductParams }: ITest): JSX.
                 onChange={SearchVal}
                 className="input-search"
                 type="text"
-                name="search"
+                name="Search"
                 placeholder="Search products by name"
             />
         </div>
