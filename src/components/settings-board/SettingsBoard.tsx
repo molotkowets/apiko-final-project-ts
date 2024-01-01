@@ -9,10 +9,8 @@ export default function SettingsBoard({ setShowBoard }: any): JSX.Element {
     const data = useAuth()?.account;
     const dispatch = useDispatch();
     const logOut = (): void => {
-        // setIsAuth("");
         dispatch(logIn(""));
         localStorage.removeItem("onAuth");
-        // console.log("logOut");
     };
 
     return (
@@ -26,7 +24,6 @@ export default function SettingsBoard({ setShowBoard }: any): JSX.Element {
                 <NavLink className={"settings-container-bottom"} to={"edit-account"}>
                     Settings
                 </NavLink>
-                {/* <button>Settings</button> */}
                 <button onClick={logOut} className="button-log-out">
                     Log out
                 </button>

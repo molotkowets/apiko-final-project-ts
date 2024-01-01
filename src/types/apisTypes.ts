@@ -27,3 +27,15 @@ export interface TAuthResponse {
         address: string | null;
     };
 }
+
+export interface IAccount {
+    id: number;
+    fullName: string;
+    createdAt: string;
+    updatedAt: string;
+    email: string;
+    phone: string;
+    country: string | null;
+    city: string | null;
+    address: string | null;
+}

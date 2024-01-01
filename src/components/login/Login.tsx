@@ -4,8 +4,8 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import Input from "../input/Input";
-import { loginData } from "./data";
 import { urlLogin } from "../../constants/urls";
+import { loginData } from "./data";
 
 // import { useAuth } from "../../hooks/useAuth";
 import { logIn } from "../../store/slices/userSlice";
@@ -17,7 +17,7 @@ export type Inputs = Record<string, string>;
 
 export default function Login(): JSX.Element {
     const [params, setParams] = useState<Inputs>();
-    const { isLoading, data } = useLogin(urlLogin, params);
+    const { data: loginResult, status } = useLogin(urlLogin, params);
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -33,14 +33,15 @@ export default function Login(): JSX.Element {
     const onSubmit: SubmitHandler<Inputs> = async (params) => {
         setParams(params);
     };
-    if (data?.status === 200) {
-        const { token, account } = data.data;
-        console.log(token, account);
-        dispatch(logIn(data.data));
-        localStorage.setItem("onAuth", JSON.stringify(data.data));
-        navigate(-1);
+    if (status === "success") {
+        // const { token, account } = data.data;
+
+        // console.log(loginResult.data.account);
+        dispatch(logIn(loginResult.data));
+        localStorage.setItem("onAuth", JSON.stringify(loginResult.data));
+        // navigate(-1);
     }
-    console.log("isLoading:", isLoading);
+    // console.log("isLoading:", isLoading);
     return (
         <div className="authorization-window">
             <button

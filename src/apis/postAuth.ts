@@ -1,21 +1,11 @@
-import axios from "axios";
+import axios, { type AxiosResponse } from "axios";
 import { type TAuthResponse } from "../types/apisTypes";
-
-export async function postAuth<P>(url: string, params: P | undefined): Promise<any> {
-    // try {
-
+// interface IAxios {
+//     data: TAuthResponse;
+// }
+export async function postAuth<P>(
+    url: string,
+    params: P | undefined
+): Promise<AxiosResponse<TAuthResponse>> {
     return await axios.post<TAuthResponse>(url, params);
-
-    // console.log(JSON.stringify(data));
-    // console.log(status);
-    //     return data;
-    // } catch (error) {
-    //     if (axios.isAxiosError(error)) {
-    //         console.error("error message: ", error.message);
-    //         return error.message;
-    //     } else {
-    //         console.error("unexpected error: ", error);
-    //         return "An unexpected error occurred";
-    //     }
-    // }
 }

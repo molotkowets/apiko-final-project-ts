@@ -1,0 +1,18 @@
+.buttonEditAccount{
+    background: #FD7114;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    margin: 40px 0;
+}
+.title-form{
+        
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.15000000596046448px;
+    text-align: left;
+
+}

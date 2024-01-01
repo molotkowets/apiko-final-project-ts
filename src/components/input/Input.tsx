@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./input.css";
-import { type IInput } from "../../types/inputsTypes";
+import { type IInputDEL } from "../../types/inputsTypes";
 import Eye from "../eye/Eye";
 
 export default function Input({
@@ -12,20 +12,22 @@ export default function Input({
     placeholder,
     maxLength,
     minLength,
-}: IInput): JSX.Element {
+}: IInputDEL): JSX.Element {
     const [stateLabel, setStateLabel] = useState(false);
     const [showPass, setShowPass] = useState(false);
 
     const click = (e: React.FormEvent<HTMLInputElement>): void => {
         const state = !(e.currentTarget.value.length === 0);
         setStateLabel(state);
-        console.log(state);
+        // console.log(state);
     };
+
     const label = (
         <label className={"label-auth"} htmlFor={id}>
             {placeholder + ":"}
         </label>
     );
+
     return (
         <div className="container-input">
             {stateLabel && label}

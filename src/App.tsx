@@ -10,15 +10,20 @@ import Login from "./components/login/Login";
 import ProductContainer from "./containers/ProductContainer";
 import { useDispatch } from "react-redux";
 import { logIn } from "./store/slices/userSlice";
+import Settings from "./pages/settings/Settings";
+import EditAccount from "./components/edit-account/EditAccount";
 
 function App(): React.ReactElement | null {
     const location = useLocation();
     const background = location.state?.background;
     const dispatch = useDispatch();
     const storageAuth = localStorage.getItem("onAuth");
-    if (typeof storageAuth === "string") {
+    const notEmpty = typeof storageAuth === "string";
+
+    if (notEmpty) {
         dispatch(logIn(JSON.parse(storageAuth)));
     }
+
     // location.state && location.state.background;
     return (
         <>
@@ -26,6 +31,16 @@ function App(): React.ReactElement | null {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="product/:id" element={<ProductContainer />} />
+                    {notEmpty && (
+                        <Route path="/" element={<Settings storageAuth={storageAuth} />}>
+                            <Route
+                                path="edit-account"
+                                element={<EditAccount storageAuth={storageAuth} />}
+                            />
+                            {/* <Route path="order-history" element={<OrdersHistory />} />
+                            <Route path="favorites" element={<Favorites />} /> */}
+                        </Route>
+                    )}
                 </Route>
             </Routes>
             {Boolean(background) && (

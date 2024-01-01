@@ -1,0 +1,80 @@
+.settings-avatar{
+    background: #DEDEE0;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-transform: uppercase;
+    margin-top: 48px;
+}
+.settings-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0px;
+    text-align: left;
+
+}
+.settings-header h2{
+    font-size: 22px;
+}
+.settings-nav a{
+ text-decoration: none;
+}
+.settings-nav{
+    display: flex;
+    margin-bottom: 50px;
+}
+.nav-button{
+    
+    color: #000;
+    background: #fff;
+    padding: 29px 39px;
+    border: #DEDEE0 solid 1px
+}
+.active-button{
+    position: relative;
+    background: #FD7114;
+    color: #fff;
+}
+.active-button::before{
+    content: "";
+    display: flex;
+    position: absolute;
+    bottom: -9px;
+    left: calc(50% - 10px);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 9px solid #dedee0;
+}
+.active-button::after{
+    content: "";
+    display: flex;
+    position: absolute;
+    bottom: -8px;
+    left: calc(50% - 9px);
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 8px solid #fd7114;
+}
+
+.settings-page-container{
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    align-items: center;
+    width: 900px;
+    border: solid 1px #E4E4E4;
+
+}

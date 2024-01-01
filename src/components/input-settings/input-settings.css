@@ -1,0 +1,43 @@
+
+
+/* ???? */
+
+  .input-auth:focus{
+    border: 2px solid #707070;
+    border-radius: 4px;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    /* border: 1px solid green; */
+    /* -webkit-text-fill-color: green; */
+    -webkit-box-shadow: 0 0 0px 1000px #00000000 inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  .eye-button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 8px 14px;
+  }
+  .input-right-padding{
+    padding-right: 45px;
+  }
+  /* .auth-input-error{ 
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: #F44336;
+  } */
