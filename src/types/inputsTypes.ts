@@ -6,6 +6,7 @@ interface mandatoryArt {
     name: string;
     type: string;
     value: string | null;
+    placeholder: string | null;
 }
 export interface IInput<A> {
     register: TRegister;

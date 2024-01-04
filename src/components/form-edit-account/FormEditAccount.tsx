@@ -10,7 +10,6 @@ interface IFormMainInf {
 
 export default function FormMainInf({ inputs }: IFormMainInf): JSX.Element {
     const { register, handleSubmit } = useForm<Inputs>();
-
     const handlerMainInf = (event: FormEvent<HTMLFormElement>): any => {
         return event;
     };

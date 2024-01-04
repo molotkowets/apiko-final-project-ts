@@ -11,14 +11,14 @@ export default function InputSettings<A>({
     setLabel,
     toggleType,
 }: IInput<A> & IExtends): JSX.Element {
-    const [value, setValue] = useState(attributes.value ?? undefined);
+    const [value, setValue] = useState(attributes.value ?? "");
     useEffect(() => {
-        setLabel(value !== undefined);
+        setLabel(value.length !== 0);
     }, [value]);
     const change = (e: React.FormEvent<HTMLInputElement>): void => {
         const value = e.currentTarget.value;
         setValue(value);
-        setLabel(!(value.length === 0));
+        setLabel(value.length !== 0);
     };
 
     const type = attributes.type === "password" ? attributes.type : "text";
@@ -33,6 +33,7 @@ export default function InputSettings<A>({
                 ...attributes,
                 value,
             })}
+            placeholder={attributes.placeholder ?? attributes.name}
             type={type}
             // autoComplete="on"
         />

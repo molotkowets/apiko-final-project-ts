@@ -14,13 +14,10 @@ import Eye from "../eye/Eye";
 export default function InputLayout<A>({ register, attributes }: IInput<A>): JSX.Element {
     const [label, setLabel] = useState<boolean>(false);
     const [togglePass, setTogglePass] = useState<boolean>(false);
-    // console.log(togglePass);
     const modAttribute = togglePass ? { ...attributes, type: "text" } : attributes;
-    // console.log("modAttribute", modAttribute, "togglePass", togglePass);
     return (
         <div className="container-input">
             {label && <label className="label-input">{attributes.name}</label>}
-            {/* <label className="label-input">{attributes.name}</label> */}
             <div>
                 <InputSettings<A>
                     register={register}
