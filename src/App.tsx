@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { logIn } from "./store/slices/userSlice";
 import Settings from "./pages/settings/Settings";
 import EditAccount from "./components/edit-account/EditAccount";
+import OrdersHistory from "./components/orders-history/OrdersHistory";
 
 function App(): React.ReactElement | null {
     const location = useLocation();
@@ -37,8 +38,8 @@ function App(): React.ReactElement | null {
                                 path="edit-account"
                                 element={<EditAccount storageAuth={storageAuth} />}
                             />
-                            {/* <Route path="order-history" element={<OrdersHistory />} />
-                            <Route path="favorites" element={<Favorites />} /> */}
+                            <Route path="order-history" element={<OrdersHistory />} />
+                            {/* <Route path="favorites" element={<Favorites />} /> */}
                         </Route>
                     )}
                 </Route>
