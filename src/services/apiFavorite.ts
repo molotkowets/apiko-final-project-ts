@@ -1,5 +1,6 @@
 import axios from "axios";
 import { type TToken } from "../query's/query.selection-request ";
+import { type IGetProduct } from "../types/apisTypes";
 
 function generateHeaders(token: TToken): any {
     const headers =
@@ -15,10 +16,18 @@ class ApiFavorite {
         console.log(this.URL + id + "/favorite");
         const fulUrl = this.URL + id + "/favorite";
         const headers = generateHeaders(token);
-        const { data, status } = await axios.post<boolean>(fulUrl, {
+        const { data } = await axios.post<boolean>(fulUrl, {
             headers,
         });
-        console.log("response status is: ", status);
+        return data;
+    }
+
+    async getFavorite<P>(params: P, token: TToken): Promise<IGetProduct[]> {
+        const headers = { Authorization: `Bearer ${token}` };
+        const { data } = await axios.get("https://demo-api.apiko.academy/api/products/favorites", {
+            headers,
+            params,
+        });
         return data;
     }
 }

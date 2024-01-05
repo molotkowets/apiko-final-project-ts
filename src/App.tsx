@@ -6,13 +6,13 @@ import Home from "./pages/home/Home";
 import "./App.css";
 import Registration from "./components/registration/Registration";
 import Login from "./components/login/Login";
-// import Product from "./pages/product/product";
 import ProductContainer from "./containers/ProductContainer";
 import { useDispatch } from "react-redux";
 import { logIn } from "./store/slices/userSlice";
 import Settings from "./pages/settings/Settings";
 import EditAccount from "./components/edit-account/EditAccount";
 import OrdersHistory from "./components/orders-history/OrdersHistory";
+import Favorites from "./components/favorites/Favorites";
 
 function App(): React.ReactElement | null {
     const location = useLocation();
@@ -39,7 +39,7 @@ function App(): React.ReactElement | null {
                                 element={<EditAccount storageAuth={storageAuth} />}
                             />
                             <Route path="order-history" element={<OrdersHistory />} />
-                            {/* <Route path="favorites" element={<Favorites />} /> */}
+                            <Route path="favorites" element={<Favorites />} />
                         </Route>
                     )}
                 </Route>
